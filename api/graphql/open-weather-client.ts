@@ -1,5 +1,12 @@
 import axios from 'axios';
 
+export interface ReverseGeocodingData {
+  lat: number;
+  lon: number;
+  name: string;
+  country: string;
+}
+
 export interface WeatherData {
   dt: number;
   coord: {
@@ -45,6 +52,11 @@ export interface ForecastData {
 export class OpenWeatherClient {
   private readonly apiKey: string = process.env.OPEN_WEATHER_API_KEY || '';
   private readonly units: string = 'imperial';
+  
+  public async reverseGeocoding(latitude: number, longitude: number): Promise<ReverseGeocodingData> {
+    const result = await axios.get<ReverseGeocodingData[]>(`https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${this.apiKey}`);
+    return result.data[0];
+  }
 
   public async fetchCurrentWeather(latitude: number, longitude: number): Promise<WeatherData> {
     const result = await axios.get<WeatherData>(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&unts=${this.units}&appid=${this.apiKey}`);

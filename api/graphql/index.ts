@@ -9,6 +9,11 @@ const typeDefs = gql(schema);
 // Resolver map.
 const resolvers = {
     Query: {
+        reverseGeocoding: async (_: any, args: { latitude: number, longitude: number }) => {
+            const client = new OpenWeatherClient();
+            const { name, country } = await client.reverseGeocoding(args.latitude, args.longitude);
+            return { name, country };
+        },
         currentWeather: async (_: any, args: { latitude: number, longitude: number }) => {
             const client = new OpenWeatherClient();
             const result = await client.fetchCurrentWeather(args.latitude, args.longitude);

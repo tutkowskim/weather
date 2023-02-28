@@ -1,3 +1,8 @@
+type City {
+  name: String!
+  country: String!
+}
+
 type Weather {
   timestamp: String!
   iconUrl: String!
@@ -8,6 +13,7 @@ type Weather {
 }
 
 type Query {
+  reverseGeocoding(latitude: Float!, longitude: Float!): City!
   currentWeather(latitude: Float!, longitude: Float!): Weather!
   forecast(latitude: Float!, longitude: Float!): [Weather!]!
 }
