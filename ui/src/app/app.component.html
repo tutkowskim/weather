@@ -1,9 +1,17 @@
 <header class="bg-teal-600 text-white">
-  <nav class="max-w-5xl mx-auto p-2">
+  <nav class="max-w-5xl mx-auto p-2 flex">
     <h1 class="my-auto flex gap-2 text-3xl font-bold font-heading">
       <img class="h-9" src="/assets/logo-white.svg" alt="logo">
       Weather
     </h1>
+    <div class="flex-auto"></div>
+    <div class="w-44">
+      <type-ahead
+        placeholder="Location" 
+        [values]="typeAheadValues"
+        (click)="changeLocation($event)"
+      ></type-ahead>
+    </div>
   </nav>
 </header>
 <div class="max-w-5xl mx-auto p-4">

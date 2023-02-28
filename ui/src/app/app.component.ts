@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TypeAheadValue } from './type-ahead/type-ahead.component';
+import * as cities from '../../node_modules/nearby-big-cities/cities.json';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +15,10 @@ export class AppComponent implements OnInit {
   // San Francisco
   private readonly defaultLongitude: number = 122.4194;
   private readonly defaultLatitude: number = 37.7749;
+
+  public readonly typeAheadValues: TypeAheadValue[] = Array.from(cities)
+    .filter((itemA, pos, array) => array.findIndex(itemB => itemA.name === itemB.name) === pos)
+    .map(city => ({ displayValue: city.name, value: city }));
 
   constructor(private router: Router, private route: ActivatedRoute) {}
 
@@ -32,5 +38,10 @@ export class AppComponent implements OnInit {
         }
       }
     );
+  }
+
+  public changeLocation(typeAheadValue: TypeAheadValue): void {
+    const { lat, lon } = typeAheadValue.value;
+    this.router.navigate([''], { queryParams: { longitude: lon, latitude: lat } });
   }
 }
