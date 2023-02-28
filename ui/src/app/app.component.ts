@@ -30,18 +30,22 @@ export class AppComponent implements OnInit {
           this.latitude = latitude;
         } else if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(
-            (position) => this.router.navigate([''], { queryParams: { longitude: position.coords.longitude, latitude: position.coords.latitude } }),
-            () => this.router.navigate([''], { queryParams: { longitude: this.defaultLongitude, latitude: this.defaultLatitude } }),
+            (position) => this.changeLocation(position.coords.latitude, position.coords.longitude),
+            () => this.changeLocation(this.defaultLatitude, this.defaultLongitude),
           );
         } else {
-          this.router.navigate([''], { queryParams: { longitude: this.defaultLongitude, latitude: this.defaultLatitude } });
+          this.changeLocation(this.defaultLatitude, this.defaultLongitude);
         }
       }
     );
   }
 
-  public changeLocation(typeAheadValue: TypeAheadValue): void {
+  public typeAheadClicked(typeAheadValue: TypeAheadValue): void {
     const { lat, lon } = typeAheadValue.value;
-    this.router.navigate([''], { queryParams: { longitude: lon, latitude: lat } });
+    this.changeLocation(lat, lon);
+  }
+
+  private changeLocation(latitude: number, longitude: number): void {
+    this.router.navigate([''], { queryParams: { longitude, latitude } });
   }
 }
