@@ -7,14 +7,15 @@
       "name": "req",
       "methods": [
         "get",
-        "post"
+        "post",
+        "options"
       ]
     },
     {
       "type": "http",
       "direction": "out",
-      "name": "res"
+      "name": "$return"
     }
   ],
-  "scriptFile": "../dist/HttpTrigger1/index.js"
+  "scriptFile": "../dist/graphql/index.js"
 }

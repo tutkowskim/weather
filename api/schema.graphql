@@ -1,0 +1,13 @@
+type Weather {
+  timestamp: String!
+  iconUrl: String!
+  weatherType: String!
+  description: String!
+  actualTemperature: Float!
+  feelsLikeTemperature: Float!
+}
+
+type Query {
+  currentWeather(latitude: Float!, longitude: Float!): Weather!
+  forecast(latitude: Float!, longitude: Float!): [Weather!]!
+}
