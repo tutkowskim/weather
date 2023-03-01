@@ -26,8 +26,8 @@ export class AppComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
         const { longitude, latitude } = params;
         if (longitude && latitude && !Number.isNaN(longitude) && !Number.isNaN(longitude)) {
-          this.longitude = longitude;
-          this.latitude = latitude;
+          this.longitude = Number(longitude);
+          this.latitude = Number(latitude);
         } else if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(
             (position) => this.changeLocation(position.coords.latitude, position.coords.longitude),

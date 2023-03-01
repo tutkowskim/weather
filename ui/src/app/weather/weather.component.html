@@ -1,2 +1,3 @@
 <div>Longitude: {{longitude}}</div>
 <div>Latitude: {{latitude}}</div>
+<div *ngIf="(reverseGeocoding$ | async) as reverseGeocoding">{{ reverseGeocoding.data | json }}</div>
