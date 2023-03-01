@@ -17,8 +17,9 @@ export class AppComponent implements OnInit {
   private readonly defaultLatitude: number = 37.7749;
 
   public readonly typeAheadValues: TypeAheadValue[] = Array.from(cities)
+    .filter(city => city.name && city.country && city.lon && city.lat)
     .map(city => ({ displayValue: `${city.name}, ${city.country}`, value: city }))
-    .filter((itemA, pos, array) => array.findIndex(itemB => itemA.displayValue === itemB.displayValue) === pos);
+    .filter((itemA, pos, array) => array.findIndex(itemB => itemA.displayValue === itemB.displayValue) === pos)
 
   constructor(private router: Router, private route: ActivatedRoute) {}
 
