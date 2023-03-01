@@ -18,6 +18,7 @@ const resolvers = {
             const client = new OpenWeatherClient();
             const result = await client.fetchCurrentWeather(args.latitude, args.longitude);
             return {
+                name: result.name,
                 timestamp: new Date(result.dt * 1000).toISOString(),
                 iconUrl: `http://openweathermap.org/img/wn/${result.weather[0].icon}@2x.png`,
                 weatherType: result.weather[0].main,
@@ -30,6 +31,7 @@ const resolvers = {
             const client = new OpenWeatherClient();
             const result = await client.fetchWeatherForecast(args.latitude, args.longitude);
             return result.list.map(weatherData => ({
+                name: weatherData.name,
                 timestamp: new Date(weatherData.dt * 1000).toISOString(),
                 iconUrl: `http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`,
                 weatherType: weatherData.weather[0].main,

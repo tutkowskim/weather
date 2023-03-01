@@ -6,25 +6,14 @@ import { BehaviorSubject, Observable, combineLatestWith, switchMap } from 'rxjs'
 import {
   CurrentWeatherQuery,
   CurrentWeatherQueryVariables,
-  ReverseGeocodingQuery,
-  ReverseGeocodingQueryVariables,
   ForecastQuery,
   ForecastQueryVariables,
 } from '../../../graphql/generated';
 
-
-const GET_REVERSE_GEOCODING = gql`
-  query ReverseGeocoding ($latitude: Float!, $longitude: Float!) { 
-    reverseGeocoding(latitude: $latitude, longitude: $longitude) {
-        name
-        country
-    }
-  }
-`;
-
 const GET_CURRENT_WEATHER = gql`
   query CurrentWeather ($latitude: Float!, $longitude: Float!) { 
     currentWeather(latitude: $latitude, longitude: $longitude) {
+        name
         timestamp
         iconUrl
         weatherType
@@ -54,7 +43,6 @@ const GET_WEATHER_FORECAST = gql`
   styleUrls: ['./weather.component.css']
 })
 export class WeatherComponent {
-  public readonly reverseGeocoding$: Observable<ApolloQueryResult<ReverseGeocodingQuery>>;
   public readonly currentWeather$: Observable<ApolloQueryResult<CurrentWeatherQuery>>;
   public readonly weatherForecast$: Observable<ApolloQueryResult<ForecastQuery>>;
   private readonly _longitude$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
@@ -78,10 +66,6 @@ export class WeatherComponent {
 
   constructor(private apollo: Apollo) {
     const coordinates = this._latitude$.pipe(combineLatestWith(this._longitude$));
-    this.reverseGeocoding$ = coordinates.pipe(switchMap(([latitude, longitude]) => this.apollo.query<ReverseGeocodingQuery, ReverseGeocodingQueryVariables>({ 
-      query: GET_REVERSE_GEOCODING,
-      variables: { latitude, longitude },
-    })));
     this.currentWeather$ = coordinates.pipe(switchMap(([latitude, longitude]) => this.apollo.query<CurrentWeatherQuery, CurrentWeatherQueryVariables>({ 
       query: GET_CURRENT_WEATHER,
       variables: { latitude, longitude },

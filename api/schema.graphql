@@ -4,6 +4,7 @@ type City {
 }
 
 type Weather {
+  name: String!
   timestamp: String!
   iconUrl: String!
   weatherType: String!
