@@ -20,7 +20,7 @@ const resolvers = {
             return {
                 name: result.name,
                 timestamp: new Date(result.dt * 1000).toISOString(),
-                iconUrl: `http://openweathermap.org/img/wn/${result.weather[0].icon}@2x.png`,
+                iconUrl: `https://openweathermap.org/img/wn/${result.weather[0].icon}@2x.png`,
                 weatherType: result.weather[0].main,
                 description: result.weather[0].description,
                 actualTemperature: result.main.temp,
@@ -33,7 +33,7 @@ const resolvers = {
             return result.list.map(weatherData => ({
                 name: weatherData.name,
                 timestamp: new Date(weatherData.dt * 1000).toISOString(),
-                iconUrl: `http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`,
+                iconUrl: `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`,
                 weatherType: weatherData.weather[0].main,
                 description: weatherData.weather[0].description,
                 actualTemperature: weatherData.main.temp,
