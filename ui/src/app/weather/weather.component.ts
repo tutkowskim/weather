@@ -62,7 +62,6 @@ export class WeatherComponent {
   
   @Input()
   public set longitude(value: number) {
-    console.log(JSON.stringify(value));
     this._longitude$.next(value);
   }
   public get longitude(): number {
@@ -71,7 +70,6 @@ export class WeatherComponent {
   
   @Input()
   public set latitude(value: number) {
-    console.log(JSON.stringify(value));
     this._latitude$.next(value);
   }
   public get latitude(): number {

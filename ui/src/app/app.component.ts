@@ -42,6 +42,7 @@ export class AppComponent implements OnInit {
   }
 
   public typeAheadClicked(typeAheadValue: TypeAheadValue): void {
+    if (!typeAheadValue || !typeAheadValue.value) return;
     const { lat, lon } = typeAheadValue.value;
     this.changeLocation(lat, lon);
   }
