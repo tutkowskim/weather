@@ -59,12 +59,12 @@ export class OpenWeatherClient {
   }
 
   public async fetchCurrentWeather(latitude: number, longitude: number): Promise<WeatherData> {
-    const result = await axios.get<WeatherData>(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&unts=${this.units}&appid=${this.apiKey}`);
+    const result = await axios.get<WeatherData>(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=${this.units}&appid=${this.apiKey}`);
     return result.data;
   }
 
   public async fetchWeatherForecast(latitude: number, longitude: number): Promise<ForecastData> {
-    const result = await axios.get<ForecastData>(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&unts=${this.units}&appid=${this.apiKey}`);
+    const result = await axios.get<ForecastData>(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=${this.units}&appid=${this.apiKey}`);
     return result.data;
   }
 }
