@@ -7,10 +7,12 @@ import { TypeAheadComponent } from './type-ahead/type-ahead.component';
 import { FormsModule } from '@angular/forms';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
+import { CardComponent } from './weather/card/card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    CardComponent,
     WeatherComponent,
     TypeAheadComponent,
   ],

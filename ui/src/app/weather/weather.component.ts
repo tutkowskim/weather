@@ -2,16 +2,10 @@ import { Component, Input } from '@angular/core';
 import { ApolloQueryResult } from '@apollo/client';
 import { Apollo, gql } from 'apollo-angular';
 import { BehaviorSubject, Observable, combineLatestWith, switchMap } from 'rxjs';
+import { ForecastQuery, ForecastQueryVariables } from '../../../graphql/generated';
 
-import {
-  CurrentWeatherQuery,
-  CurrentWeatherQueryVariables,
-  ForecastQuery,
-  ForecastQueryVariables,
-} from '../../../graphql/generated';
-
-const GET_CURRENT_WEATHER = gql`
-  query CurrentWeather ($latitude: Float!, $longitude: Float!) { 
+const GET_WEATHER_FORECAST = gql`
+  query Forecast ($latitude: Float!, $longitude: Float!) { 
     currentWeather(latitude: $latitude, longitude: $longitude) {
         name
         timestamp
@@ -21,11 +15,6 @@ const GET_CURRENT_WEATHER = gql`
         actualTemperature
         feelsLikeTemperature
     }
-  }
-`;
-
-const GET_WEATHER_FORECAST = gql`
-  query Forecast ($latitude: Float!, $longitude: Float!) { 
     forecast(latitude: $latitude, longitude: $longitude) {
         timestamp
         iconUrl
@@ -43,7 +32,6 @@ const GET_WEATHER_FORECAST = gql`
   styleUrls: ['./weather.component.css']
 })
 export class WeatherComponent {
-  public readonly currentWeather$: Observable<ApolloQueryResult<CurrentWeatherQuery>>;
   public readonly weatherForecast$: Observable<ApolloQueryResult<ForecastQuery>>;
   private readonly _longitude$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   private readonly _latitude$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
@@ -66,10 +54,6 @@ export class WeatherComponent {
 
   constructor(private apollo: Apollo) {
     const coordinates = this._latitude$.pipe(combineLatestWith(this._longitude$));
-    this.currentWeather$ = coordinates.pipe(switchMap(([latitude, longitude]) => this.apollo.query<CurrentWeatherQuery, CurrentWeatherQueryVariables>({ 
-      query: GET_CURRENT_WEATHER,
-      variables: { latitude, longitude },
-    })));
     this.weatherForecast$ = coordinates.pipe(switchMap(([latitude, longitude]) => this.apollo.query<ForecastQuery, ForecastQueryVariables>({ 
       query: GET_WEATHER_FORECAST,
       variables: { latitude, longitude },

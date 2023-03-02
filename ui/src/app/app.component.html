@@ -14,6 +14,8 @@
     </div>
   </nav>
 </header>
-<div class="max-w-5xl mx-auto p-4">
-  <app-weather *ngIf="longitude && latitude" [longitude]="longitude" [latitude]="latitude"></app-weather>
+<div class="w-full h-screen bg-gradient-to-b from-green-400 to-blue-500">
+  <div class="max-w-5xl mx-auto p-4">
+    <app-weather *ngIf="longitude && latitude" [longitude]="longitude" [latitude]="latitude"></app-weather>
+  </div>
 </div>
