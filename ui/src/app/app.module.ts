@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
-import { WeatherComponent } from './weather/weather.component';
-import { TypeAheadComponent } from './type-ahead/type-ahead.component';
-import { FormsModule } from '@angular/forms';
+import { CardComponent } from './card/card.component';
 import { GraphQLModule } from './graphql.module';
-import { HttpClientModule } from '@angular/common/http';
-import { CardComponent } from './weather/card/card.component';
+import { TypeAheadComponent } from './type-ahead/type-ahead.component';
+import { WeatherComponent } from './weather/weather.component';
 
 @NgModule({
   declarations: [
