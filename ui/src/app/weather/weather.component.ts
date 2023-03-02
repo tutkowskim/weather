@@ -8,20 +8,23 @@ const GET_WEATHER_FORECAST = gql`
   query Forecast ($latitude: Float!, $longitude: Float!) { 
     currentWeather(latitude: $latitude, longitude: $longitude) {
         name
-        timestamp
-        iconUrl
-        weatherType
         description
         actualTemperature
+        lowTemperature
+        highTemperature
         feelsLikeTemperature
+        humidity
+        pressure
+        wind {
+          speed
+          degree
+        }
     }
     forecast(latitude: $latitude, longitude: $longitude) {
         timestamp
         iconUrl
-        weatherType
         description
         actualTemperature
-        feelsLikeTemperature
     }
   }
 `;

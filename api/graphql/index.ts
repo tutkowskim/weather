@@ -25,6 +25,14 @@ const resolvers = {
                 description: result.weather[0].description,
                 actualTemperature: result.main.temp,
                 feelsLikeTemperature: result.main.feels_like,
+                highTemperature: result.main.temp_max,
+                lowTemperature: result.main.temp_min,
+                humidity: result.main.humidity,
+                pressure: result.main.pressure,
+                wind: {
+                    speed: result.wind.speed,
+                    degree: result.wind.deg,
+                },
             };
         },
         forecast: async (_: any, args: { latitude: number, longitude: number }) => {
@@ -38,6 +46,14 @@ const resolvers = {
                 description: weatherData.weather[0].description,
                 actualTemperature: weatherData.main.temp,
                 feelsLikeTemperature: weatherData.main.feels_like,
+                highTemperature: weatherData.main.temp_max,
+                lowTemperature: weatherData.main.temp_min,
+                humidity: weatherData.main.humidity,
+                pressure: weatherData.main.pressure,
+                wind: {
+                    speed: weatherData.wind.speed,
+                    degree: weatherData.wind.deg,
+                },
             }));
         },
     },

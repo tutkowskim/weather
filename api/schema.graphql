@@ -3,6 +3,11 @@ type City {
   country: String!
 }
 
+type Wind {
+  speed: Float!
+  degree: Float!
+}
+
 type Weather {
   name: String!
   timestamp: String!
@@ -11,6 +16,11 @@ type Weather {
   description: String!
   actualTemperature: Float!
   feelsLikeTemperature: Float!
+  highTemperature: Float!
+  lowTemperature: Float!
+  humidity: Float!
+  pressure: Float!
+  wind: Wind!
 }
 
 type Query {
