@@ -39,7 +39,7 @@
     "@types/all-the-cities": "3.1.0",
     "@types/fast-levenshtein": "0.0.2",
     "@types/jasmine": "4.3.1",
-    "autoprefixer": "10.4.13",
+    "autoprefixer": "10.4.14",
     "jasmine-core": "4.5.0",
     "karma": "6.4.1",
     "karma-chrome-launcher": "3.1.1",
