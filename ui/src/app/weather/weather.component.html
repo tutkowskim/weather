@@ -1,4 +1,4 @@
-<div *ngIf="(weatherForecast$ | async) as weatherForecast" class="w-full">
+<div *ngIf="(weatherForecast$ | async) as weatherForecast; else loading" class="w-full">
   <div class="mx-auto w-full mb-2 text-white font-bold">
     <div class="px-6 py-4">
       <div class="text-xl text-center">{{weatherForecast.data.currentWeather.name}}</div>
@@ -45,3 +45,9 @@
     </app-card>
   </div>
 </div>
+
+<ng-template #loading>
+  <div class="flex justify-center">
+    <app-spinner></app-spinner>
+  </div>
+</ng-template>

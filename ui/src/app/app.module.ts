@@ -8,11 +8,13 @@ import { CardComponent } from './card/card.component';
 import { GraphQLModule } from './graphql.module';
 import { TypeAheadComponent } from './type-ahead/type-ahead.component';
 import { WeatherComponent } from './weather/weather.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CardComponent,
+    SpinnerComponent,
     WeatherComponent,
     TypeAheadComponent,
   ],
